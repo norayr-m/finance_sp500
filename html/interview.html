@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>finance_sp500 · George + Emma interview</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg: #0b0a08; --panel: #14120e; --gold: #d4af37; --gold-dim: #8a7228;
+    --gold-bright: #f5d76e; --text: #e8e2cf; --muted: #8a846f;
+    --george: #6b9fff; --emma: #ff86bf;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "SF Pro Display", sans-serif; overflow: hidden; }
+  header { padding: 1vh 2vw; border-bottom: 1px solid var(--gold-dim);
+    display: flex; justify-content: space-between; align-items: baseline; }
+  header h1 { color: var(--gold); font-size: 2.4vh; font-weight: 500; letter-spacing: 2px; }
+  header .meta { color: var(--muted); font-size: 1.4vh; }
+  main { display: grid; grid-template-columns: 38vw 1fr; height: calc(100vh - 4vh - 10vh); gap: 1vw; padding: 1vh 1vw; }
+  #transcript { overflow-y: auto; padding: 1vh 1vw; background: #0d0b07;
+    border: 1px solid var(--gold-dim); border-radius: 8px; }
+  .seg { padding: 0.9vh 0.8vw; margin-bottom: 0.4vh; border-radius: 6px;
+    font-size: 1.7vh; line-height: 1.5; opacity: 0.45; transition: all 0.2s; }
+  .seg.active { opacity: 1; background: rgba(255, 170, 60, 0.08); border-left: 2px solid var(--gold-bright); }
+  .seg .who { font-weight: 700; letter-spacing: 2px; font-size: 1.3vh; margin-right: 0.5vw; }
+  .seg.george .who { color: var(--george); }
+  .seg.emma   .who { color: var(--emma); }
+  #chart-host { border: 1px solid var(--gold-dim); border-radius: 8px; overflow: hidden; background: #000;
+    box-shadow: 0 0 30px rgba(255, 170, 60, 0.1); }
+  #chart-host iframe { width: 100%; height: 100%; border: none; }
+  footer { position: fixed; bottom: 0; left: 0; right: 0; height: 10vh;
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.9) 40%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  audio { width: 92vw; height: 5vh; filter: invert(1) hue-rotate(180deg); }
+  .crest { color: var(--muted); font-size: 1.1vh; letter-spacing: 2px; margin-top: 0.4vh; }
+  .label-row { display: flex; gap: 2vw; font-size: 1.4vh; margin-top: 0.3vh; }
+  .label-row b { letter-spacing: 1px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>finance_sp500 · interview with George &amp; Emma</h1>
+  <div class="meta">⬡⟐ HARI · 91ae0c77 · auto-advancing transcript + charts</div>
+</header>
+
+<main>
+  <div id="transcript">
+<div class="seg george" data-start="0.00" data-end="10.85" data-chart="sp500_shiller_1871_2026.html"><span class="who">GEORGE</span>Welcome back. Today we are joined by Emma who is looking at the S&P 500 across one hundred fifty five years. Emma, what is the story?</div>
+<div class="seg emma" data-start="10.85" data-end="22.90" data-chart="sp500_shiller_1871_2026.html"><span class="who">EMMA</span>Thank you George. The story is in the math. From eighteen seventy one to today, the index grew from under five to seven thousand on a log scale it looks almost linear, but that hides the real structure.</div>
+<div class="seg george" data-start="22.90" data-end="24.72" data-chart=""><span class="who">GEORGE</span>What structure?</div>
+<div class="seg emma" data-start="24.72" data-end="40.77" data-chart="sp500_shiller_1871_2026.html"><span class="who">EMMA</span>When you let a piecewise algorithm choose where to break the series, it picks nineteen forty two and nineteen eighty one. Those are the end of the gold standard and the Volcker pivot. The algorithm had no idea about monetary policy. It just followed the data.</div>
+<div class="seg george" data-start="40.77" data-end="43.17" data-chart=""><span class="who">GEORGE</span>So three regimes?</div>
+<div class="seg emma" data-start="43.17" data-end="55.70" data-chart="sp500_shiller_1871_2026.html"><span class="who">EMMA</span>Three macro regimes, yes. But you can go further. With six segments the algorithm isolates two thousand ten onwards as its own clean monotone regime at eleven point two percent per year.</div>
+<div class="seg george" data-start="55.70" data-end="59.22" data-chart=""><span class="who">GEORGE</span>What is special about two thousand ten?</div>
+<div class="seg emma" data-start="59.22" data-end="74.47" data-chart="sp500_minima_line.html"><span class="who">EMMA</span>That is when quantitative easing stopped being an emergency tool and became structural. Norayr picked this regime start visually a year ago. He drew a straight line through the two most recent local minima August twenty eleven and March twenty twenty five.</div>
+<div class="seg george" data-start="74.47" data-end="79.32" data-chart="sp500_minima_line.html"><span class="who">GEORGE</span>And that line predicted seven thousand by twenty twenty six?</div>
+<div class="seg emma" data-start="79.32" data-end="92.32" data-chart="sp500_minima_line.html"><span class="who">EMMA</span>Within a few months, yes. The index landed at seven thousand forty one on April seventeenth. Norayr's two-minima line said six thousand five hundred for today. So the market is eight percent above his channel.</div>
+<div class="seg george" data-start="92.32" data-end="94.40" data-chart=""><span class="who">GEORGE</span>Is that a problem?</div>
+<div class="seg emma" data-start="94.40" data-end="113.15" data-chart="sp500_loglog.html"><span class="who">EMMA</span>It is the signal we need to examine. If price is growing exponentially log of price is linear in time. If price is growing faster than that — super-exponentially — then log of log of price is linear. On the post 2010 data, log of log of price is twelve times more linear than on the full series.</div>
+<div class="seg george" data-start="113.15" data-end="116.92" data-chart="sp500_loglog.html"><span class="who">GEORGE</span>So this is a super-exponential regime.</div>
+<div class="seg emma" data-start="116.92" data-end="130.15" data-chart="sp500_loglog.html"><span class="who">EMMA</span>Mathematically, yes. Didier Sornette calls this a log-periodic power law singularity. He has been publishing on it since nineteen ninety six. Norayr re-derived the framework empirically without knowing it.</div>
+<div class="seg george" data-start="130.15" data-end="133.65" data-chart=""><span class="who">GEORGE</span>What does Sornette's model say happens next?</div>
+<div class="seg emma" data-start="133.65" data-end="154.88" data-chart=""><span class="who">EMMA</span>Super-exponential trajectories end in finite time. The critical time t-sub-c can be estimated from log-periodic oscillations in the price. The literature lists five warnings — volatility compression then spike, credit spread widening, margin debt parabolic, breadth narrowing, and capex concentration. Three of five are live right now.</div>
+<div class="seg george" data-start="154.88" data-end="157.28" data-chart=""><span class="who">GEORGE</span>Not financial advice.</div>
+<div class="seg emma" data-start="157.28" data-end="164.53" data-chart=""><span class="who">EMMA</span>Correct. This is a mathematical study of a price series. Nothing here is a recommendation. Thank you George.</div>
+<div class="seg george" data-start="164.53" data-end="166.38" data-chart=""><span class="who">GEORGE</span>Thank you Emma.</div>
+
+  </div>
+  <div id="chart-host"><iframe id="chart-frame" src=""></iframe></div>
+</main>
+
+<footer>
+  <audio id="aud" controls src="interview.mp3"></audio>
+  <div class="label-row"><b style="color:var(--george)">◆ GEORGE</b> <b style="color:var(--emma)">◆ EMMA</b></div>
+  <div class="crest">⬡⟐ HARI · 91ae0c77 · finance_sp500</div>
+</footer>
+
+<script>
+  const segs = Array.from(document.querySelectorAll(".seg"));
+  const frame = document.getElementById("chart-frame");
+  const aud = document.getElementById("aud");
+  let currentChart = "";
+  function onTick() {
+    const t = aud.currentTime;
+    let active = -1;
+    for (let i = 0; i < segs.length; i++) {
+      const s = +segs[i].dataset.start, e = +segs[i].dataset.end;
+      if (t >= s && t < e) { active = i; break; }
+    }
+    segs.forEach((s, i) => s.classList.toggle("active", i === active));
+    if (active >= 0) {
+      segs[active].scrollIntoView({ block: "center", behavior: "smooth" });
+      const chart = segs[active].dataset.chart;
+      if (chart && chart !== currentChart) {
+        frame.src = chart;
+        currentChart = chart;
+      }
+    }
+  }
+  aud.addEventListener("timeupdate", onTick);
+  aud.addEventListener("loadedmetadata", () => { frame.src = segs[0].dataset.chart || "sp500_shiller_1871_2026.html"; currentChart = frame.src; });
+  // Click a segment to seek
+  segs.forEach(s => s.addEventListener("click", () => { aud.currentTime = +s.dataset.start + 0.05; aud.play(); }));
+</script>
+</body>
+</html>

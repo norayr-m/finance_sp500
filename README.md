@@ -33,18 +33,27 @@ Power Law) framework which has been publishing this thesis since 1996.
 ## Files
 
 ```
-src/full_history.py    1871-2026 full series + N-segment PWLF + projection
-src/minima_line.py     line through two modern local minima + 6-seg PWLF + recent dashed
-src/loglog.py          ln(ln(price)) transform — test for super-exponential
-data/shiller.xls       Robert Shiller monthly composite, 1871-2023
-                       (recent 2023-10 → 2026-04 hardcoded from multpl.com)
-html/                  rendered Plotly dashboards (cache)
-docs/notes.md          running notes + Sornette reference list
-old_predictions/mnorayr.github.io/
-                       prior work, last updated 2025-04-08 (one year before this
-                       study); contains Bokeh S&P 1931-2025 prediction chart and
-                       SPY options chain snapshots from 2025-04-07
+src/full_history.py          1871-2026 full series + N-segment PWLF + projection
+src/minima_line.py           line through two modern local minima + 6-seg PWLF + recent dashed
+src/loglog.py                ln(ln(price)) transform — test for super-exponential
+build_slides.py              10-slide interactive deck with Emma narration (bf_emma MP3 per slide)
+build_interview.py           George + Emma interview (~3 min) with dynamic chart switching
+data/shiller.xls             Robert Shiller monthly composite, 1871-2023
+                             (recent 2023-10 → 2026-04 hardcoded from multpl.com)
+html/slides.html             interactive deck, 10 slides, keyboard nav
+html/interview.html          podcast-style interview + synced transcript + auto-switching charts
+html/interview.mp3           concatenated 2-voice narration (~2m 46s)
+html/audio/slide_NN.mp3      per-slide Emma narrations
+html/sp500_*.html            the three Plotly charts (embedded in the deck + interview)
+docs/notes.md                running notes + Sornette LPPLS reference list
 ```
+
+## Next milestone — port to Bokeh + datashader
+
+Current charts are Plotly; prior work (2025 repo) used Bokeh. Bokeh +
+datashader renders datasets 1000× larger than Plotly at comparable fidelity,
+and the 2025 prediction notebook already has the Bokeh pipeline. Re-platform
+once stable.
 
 ## Run
 

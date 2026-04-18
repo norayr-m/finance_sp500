@@ -1,0 +1,8 @@
+# Nested repo — kept locally as reference, not re-pushed
+old_predictions/mnorayr.github.io/
+
+# Generated waypoints (regenerable)
+html/audio/*.wav
+__pycache__/
+*.pyc
+.DS_Store
