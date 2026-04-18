@@ -6,3 +6,4 @@ html/audio/*.wav
 __pycache__/
 *.pyc
 .DS_Store
+docs/linkedin_*.md
