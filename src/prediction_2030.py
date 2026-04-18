@@ -82,10 +82,19 @@ fig.add_trace(go.Scatter(
     hovertemplate="<b>%{x|%b %Y}</b><br>S&P: %{y:.2f}<extra></extra>",
 ))
 
-# Projection (red dashed) — the post-2010 trend extended
+# Solid red: the fit line evaluated OVER the historical actual data
+fit_hist_y = np.exp(intercept + slope * xs)
+fig.add_trace(go.Scatter(
+    x=d_recent, y=fit_hist_y, mode="lines",
+    name=f"fit · post-2010 log-linear · CAGR {cagr:.2f}%/yr",
+    line=dict(color="#f87171", width=2.4),  # SOLID
+    hovertemplate="<b>%{x|%b %Y}</b><br>fit: %{y:,.0f}<extra></extra>",
+))
+
+# Dashed red: the same fit extended forward into the projection window
 fig.add_trace(go.Scatter(
     x=future_dates, y=future_y, mode="lines",
-    name=f"projection · post-2010 fit · CAGR {cagr:.2f}%/yr",
+    name="projection · same fit extended",
     line=dict(color="#f87171", width=2.4, dash="dash"),
     hovertemplate="<b>%{x|%b %Y}</b><br>projected: %{y:,.0f}<extra></extra>",
 ))
