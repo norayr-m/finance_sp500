@@ -87,8 +87,15 @@ SLIDES = [
     ("Conclusion",
      "Norayr called seven thousand from a hand-drawn line on a log chart a year ago. "
      "It landed within the season. The framework is super-exponential, the math is "
-     "Sornette, the regime is monotone accelerator. This is an amateur notebook, "
-     "not advice. Thank you for reading.",
+     "Sornette, the regime is monotone accelerator. Thank you for reading.",
+     None),
+
+    ("Humble disclaimer",
+     "This is an amateur engineering project. We are not quant finance professionals "
+     "and make no competitive claims. The timing of the seven thousand call was a "
+     "single correct prediction. One sample is not a track record. Nothing here is "
+     "investment advice. No recommendation to buy, sell, or hold any security. "
+     "Do your own math.",
      None),
 ]
 

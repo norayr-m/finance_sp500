@@ -35,6 +35,9 @@
   li { margin: 0.6vh 0; }
   a { color: var(--gold-bright); text-decoration: none; border-bottom: 1px dashed var(--gold-dim); }
   a:hover { background: rgba(255, 170, 60, 0.1); }
+  .disclaimer { border-left: 3px solid #f87171; padding: 1.4vh 1.8vw; margin: 1.2vh 0;
+    background: rgba(248, 113, 113, 0.06); color: #fca5a5; font-size: 2vh; line-height: 1.55; }
+  .disclaimer b { color: #fecaca; }
 
   #controls { position: fixed; bottom: 1.5vh; left: 0; right: 0; display: flex;
     justify-content: center; gap: 1vw; z-index: 100; }
@@ -59,84 +62,91 @@
 <section class="slide" data-audio="audio/td_00.mp3">
   <header>
     <h2>Technical dive · the formal backing</h2>
-    <div class="meta">slide 1 / 12</div>
+    <div class="meta">slide 1 / 13</div>
   </header>
   <div class="body"><p>This deck traces the mathematical framework that matches what Norayr derived empirically. Every claim is sourced.</p></div>
 </section>
 <section class="slide" data-audio="audio/td_01.mp3">
   <header>
     <h2>Origin · Sornette, Johansen, Bouchaud (1996)</h2>
-    <div class="meta">slide 2 / 12</div>
+    <div class="meta">slide 2 / 13</div>
   </header>
   <div class="body"><cite><b>Sornette, D., Johansen, A., Bouchaud, J-P.</b><br><i>Stock market crashes, precursors and replicas.</i><br>Journal de Physique I, vol 6, pp 167-175, 1996.</cite><p>Proposes that crashes are phase transitions in a system of herding traders. Introduces log-periodic oscillations as the critical-phenomena fingerprint near a critical time t<sub>c</sub>.</p></div>
 </section>
 <section class="slide" data-audio="audio/td_02.mp3">
   <header>
     <h2>The LPPL equation</h2>
-    <div class="meta">slide 3 / 12</div>
+    <div class="meta">slide 3 / 13</div>
   </header>
   <div class="body"><p class='math'>log P(t) = A + B (t<sub>c</sub> − t)<sup>m</sup> + C (t<sub>c</sub> − t)<sup>m</sup> cos(ω log(t<sub>c</sub> − t) − φ)</p><ul><li><b>t<sub>c</sub></b>: critical time (the would-be crash)</li><li><b>m ∈ (0, 1)</b>: power-law exponent → super-exponential growth</li><li><b>ω</b>: log-periodic angular frequency (empirically ≈ 6 to 13)</li><li><b>φ</b>: phase offset</li></ul></div>
 </section>
 <section class="slide" data-audio="audio/td_03.mp3">
   <header>
     <h2>Two-century S&P application</h2>
-    <div class="meta">slide 4 / 12</div>
+    <div class="meta">slide 4 / 13</div>
   </header>
   <div class="body"><cite><b>Sornette, D., Cauwels, P., Smilyanov, G.</b><br><i>LPPLS bubble indicators over two centuries of the S&amp;P 500 index.</i><br>Physica A, vol 465, pp 71-84, 2017.</cite><p>Applies LPPLS to S&amp;P 500 from 1791 to 2015. Identifies every major bubble peak within a narrow time window. The model is not retrospective curve-fitting; it produces forward warnings.</p></div>
 </section>
 <section class="slide" data-audio="audio/td_04.mp3">
   <header>
     <h2>Volatility-confined LPPL</h2>
-    <div class="meta">slide 5 / 12</div>
+    <div class="meta">slide 5 / 13</div>
   </header>
   <div class="body"><cite><b>Lin, L., Ren, R., Sornette, D.</b><br><i>The volatility-confined LPPL model.</i><br>Quantitative Finance, vol 14, 2014.</cite><p>Extends LPPL so that residuals are mean-reverting. Makes the model consistent with rational expectations — bubbles can exist while markets are otherwise efficient.</p></div>
 </section>
 <section class="slide" data-audio="audio/td_05.mp3">
   <header>
     <h2>Recent S&P 500 detection</h2>
-    <div class="meta">slide 6 / 12</div>
+    <div class="meta">slide 6 / 13</div>
   </header>
   <div class="body"><cite><b>Shu, M., Song, R.</b><br><i>Detection of financial bubbles using LPPLS.</i><br>SSRN 4734944, 2024 · daily data 1993-2025.</cite><p>Confirms the S&amp;P 500 entered LPPLS bubble regime in April 2020 and peaked near the critical time at year-end 2021. Re-entry detected from September 2023.</p></div>
 </section>
 <section class="slide" data-audio="audio/td_06.mp3">
   <header>
     <h2>Hyped LPPL variant (2025)</h2>
-    <div class="meta">slide 7 / 12</div>
+    <div class="meta">slide 7 / 13</div>
   </header>
   <div class="body"><cite><b>anonymous</b><br><i>Identifying and quantifying financial bubbles with the hyped log-periodic power law model.</i><br>arXiv 2510.10878, 2025.</cite><p>Adds hype signals (search volume, social sentiment) to the LPPLS fit. Improves tc estimate confidence intervals by 30-45% on out-of-sample validation.</p></div>
 </section>
 <section class="slide" data-audio="audio/td_07.mp3">
   <header>
     <h2>AI-augmented LPPL classifier</h2>
-    <div class="meta">slide 8 / 12</div>
+    <div class="meta">slide 8 / 13</div>
   </header>
   <div class="body"><cite><b>authors et al.</b><br><i>More than ex-post fitting: log-periodic power law and its AI-based classification.</i><br>Nature Humanities and Social Sciences Communications, 2025.</cite><p>Uses a neural network to classify LPPLS fits as reliable or spurious. Addresses the main critique that LPPLS can be over-fit retrospectively. Produces a risk metric usable in real-time.</p></div>
 </section>
 <section class="slide" data-audio="audio/td_08.mp3">
   <header>
     <h2>What the warning signals look like</h2>
-    <div class="meta">slide 9 / 12</div>
+    <div class="meta">slide 9 / 13</div>
   </header>
   <div class="body"><p>From the 2017 two-century paper, key empirical precursors:</p><ol><li>Log-periodic oscillation frequency increases — swings at shrinking time intervals</li><li>Volatility compression, often followed by spike</li><li>Credit spreads widen while equity keeps ripping</li><li>Margin debt parabolic, brokerage leverage extreme</li><li>Breadth narrows — fewer stocks carry the index</li><li>Capex to revenue ratio explodes in momentum leaders</li></ol></div>
 </section>
 <section class="slide" data-audio="audio/td_09.mp3">
   <header>
     <h2>Known limitations</h2>
-    <div class="meta">slide 10 / 12</div>
+    <div class="meta">slide 10 / 13</div>
   </header>
   <div class="body"><p>The honest critique of LPPLS, from the literature:</p><ul><li>tc estimates have wide confidence intervals (±6-18 months typical)</li><li>Parameter fitting is non-convex — multiple local optima</li><li>Model does not specify crash magnitude, only timing</li><li>Post-hoc fitting is too easy; live prediction is hard</li><li>Not all bubbles end in crashes — some deflate slowly</li></ul></div>
 </section>
 <section class="slide" data-audio="audio/td_10.mp3">
   <header>
     <h2>How Norayr re-derived this</h2>
-    <div class="meta">slide 11 / 12</div>
+    <div class="meta">slide 11 / 13</div>
   </header>
   <div class="body"><p>Without reading Sornette:</p><ul><li><b>2010 regime start</b> — saw QE1+QE2 overlap as structural break</li><li><b>Two-minima line</b> — hand-drawn trend through local lows</li><li><b>Super-exponential intuition</b> — called current pace as faster-than-exponential without the ln-of-ln math</li><li><b>2026 target of 7000</b> — predicted one year in advance</li></ul></div>
 </section>
 <section class="slide" data-audio="audio/td_11.mp3">
   <header>
+    <h2>Humble disclaimer</h2>
+    <div class="meta">slide 12 / 13</div>
+  </header>
+  <div class="body"><p class='disclaimer'>This is an amateur engineering project. We are not HPC or quant finance professionals and make no competitive claims. The timing of the 7000 call was a single correct prediction; one sample is not a track record. Errors are likely.</p><p class='disclaimer'><b>Nothing here is investment advice.</b> No recommendation to buy, sell, or hold any security. Past fits do not predict future outcomes. The LPPL literature's own authors publish wide confidence intervals (±6 to 18 months) on critical-time estimates. Do your own math.</p></div>
+</section>
+<section class="slide" data-audio="audio/td_12.mp3">
+  <header>
     <h2>Further reading</h2>
-    <div class="meta">slide 12 / 12</div>
+    <div class="meta">slide 13 / 13</div>
   </header>
   <div class="body"><ul><li><a href='https://www.sciencedirect.com/science/article/abs/pii/S0378437116301017'>LPPLS 2 centuries · Sornette et al 2017</a></li><li><a href='https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4734944'>LPPLS detection · Shu &amp; Song 2024</a></li><li><a href='https://arxiv.org/abs/2510.10878'>Hyped LPPL · 2025</a></li><li><a href='https://www.nature.com/articles/s41599-025-05920-7'>AI-LPPL · Nature HSSC 2025</a></li><li><a href='https://www.researchgate.net/publication/260757241'>Volatility-confined LPPL · 2014</a></li><li><a href='https://link.springer.com/chapter/10.1007/978-3-319-04849-9_26'>Financial Bubbles chapter</a></li></ul></div>
 </section>

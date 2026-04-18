@@ -156,6 +156,24 @@ SLIDES = [
      "thousand would land in the spring of twenty twenty six. It did. That is the "
      "whole point of this project. The math was already there. The eye found it."),
 
+    ("Humble disclaimer",
+     "<p class='disclaimer'>This is an amateur engineering project. We are not "
+     "HPC or quant finance professionals and make no competitive claims. The "
+     "timing of the 7000 call was a single correct prediction; one sample is "
+     "not a track record. Errors are likely.</p>"
+     "<p class='disclaimer'><b>Nothing here is investment advice.</b> No "
+     "recommendation to buy, sell, or hold any security. Past fits do not "
+     "predict future outcomes. The LPPL literature's own authors publish wide "
+     "confidence intervals (±6 to 18 months) on critical-time estimates. "
+     "Do your own math.</p>",
+     "Humble disclaimer. This is an amateur engineering project. We are not "
+     "quant finance professionals and we make no competitive claims. The seven "
+     "thousand call was a single correct prediction. One sample is not a track "
+     "record. Nothing in this repository is investment advice. No recommendation "
+     "to buy sell or hold any security. Past fits do not predict future outcomes. "
+     "The literature's own authors publish wide confidence intervals on the "
+     "critical time estimates. Do your own math."),
+
     ("Further reading",
      "<ul>"
      "<li><a href='https://www.sciencedirect.com/science/article/abs/pii/S0378437116301017'>LPPLS 2 centuries · Sornette et al 2017</a></li>"
@@ -239,6 +257,9 @@ html = f'''<!DOCTYPE html>
   li {{ margin: 0.6vh 0; }}
   a {{ color: var(--gold-bright); text-decoration: none; border-bottom: 1px dashed var(--gold-dim); }}
   a:hover {{ background: rgba(255, 170, 60, 0.1); }}
+  .disclaimer {{ border-left: 3px solid #f87171; padding: 1.4vh 1.8vw; margin: 1.2vh 0;
+    background: rgba(248, 113, 113, 0.06); color: #fca5a5; font-size: 2vh; line-height: 1.55; }}
+  .disclaimer b {{ color: #fecaca; }}
 
   #controls {{ position: fixed; bottom: 1.5vh; left: 0; right: 0; display: flex;
     justify-content: center; gap: 1vw; z-index: 100; }}

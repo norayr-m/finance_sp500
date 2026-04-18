@@ -1,6 +1,22 @@
 # finance_sp500 — super-exponential equity regime study
 
-Personal notebook. Started 2026-04-18, M5 Max.
+Personal notebook.
+
+## The story
+
+In April 2025 I sketched this analysis in a clumsy first-pass Bokeh notebook
+and pushed it to GitHub ([mnorayr.github.io](https://mnorayr.github.io)).
+The notebook predicted the S&P 500 would reach 7000 in spring/summer 2026.
+
+One year later — **April 17, 2026** — the index closed at **7041.28**.
+Call landed inside the season window.
+
+That's when I decided to make the full analysis public. This repo is the
+cleaned-up version: Shiller dataset back to 1871, piecewise log-linear fits,
+the two-minima trendline I drew by hand, and the ln(ln(price)) test that
+isolates the super-exponential regime. The math turns out to match Didier
+Sornette's **Log-Periodic Power Law Singularity (LPPLS)** framework, which has
+been publishing exactly this thesis since 1996 — I just didn't know it.
 
 ## What this is
 
@@ -8,8 +24,7 @@ Eyeball-first analysis of the S&P 500 from 1871 to today, testing whether the
 post-2010 leg is a normal exponential bull regime or something stronger —
 **super-exponential**, i.e. ln(ln(price)) linear in time.
 
-Rediscovered from scratch; later confirmed by Sornette's LPPL (Log-Periodic
-Power Law) framework which has been publishing this thesis since 1996.
+Rediscovered from scratch; later confirmed by Sornette's LPPL framework.
 
 ## Thesis
 
@@ -75,5 +90,12 @@ prediction error is notoriously wide.
 
 ## Humble disclaimer
 
-Amateur engineering project. We are not HPC or quant finance professionals
-and make no competitive claims. Numbers speak, ego doesn't.
+This is an amateur engineering project. We are not HPC or quant finance
+professionals and make no competitive claims. The timing of the 7000 call
+was a single correct prediction; one sample is not a track record. Errors
+are likely. Numbers speak, ego doesn't.
+
+**Nothing in this repository is investment advice.** No recommendation to buy,
+sell, or hold any security. Past fits do not predict future outcomes. The
+LPPL literature's own authors publish wide confidence intervals on critical
+time estimates (±6 to 18 months). Do your own math.
