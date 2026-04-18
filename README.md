@@ -40,6 +40,10 @@ data/shiller.xls       Robert Shiller monthly composite, 1871-2023
                        (recent 2023-10 → 2026-04 hardcoded from multpl.com)
 html/                  rendered Plotly dashboards (cache)
 docs/notes.md          running notes + Sornette reference list
+old_predictions/mnorayr.github.io/
+                       prior work, last updated 2025-04-08 (one year before this
+                       study); contains Bokeh S&P 1931-2025 prediction chart and
+                       SPY options chain snapshots from 2025-04-07
 ```
 
 ## Run
