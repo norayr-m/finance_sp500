@@ -8,6 +8,8 @@
 
 Landing: **[norayr-m.github.io/finance_sp500](https://norayr-m.github.io/finance_sp500/)**
 
+Companion chart: **[🔮 Prediction to 2030](https://norayr-m.github.io/finance_sp500/html/prediction_2030.html)** — the red-dashed post-2010 log-linear projection on a normal y-axis.
+
 ---
 
 Personal notebook.
