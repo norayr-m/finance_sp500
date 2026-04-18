@@ -40,7 +40,7 @@ recent = [
 for y, m, p in recent:
     dates.append(datetime(y, m, 1)); prices.append(p)
 
-# ── post-2010 log-linear fit (same slope used for the red-dashed line) ──
+# ── post-2010 log-linear fit (red line) ──
 mask = [i for i, d in enumerate(dates) if d.year >= 2010]
 d_recent = [dates[i] for i in mask]
 p_recent = [prices[i] for i in mask]
@@ -50,12 +50,23 @@ slope, intercept = np.polyfit(xs, ys, 1)
 cagr = (math.exp(slope) - 1) * 100
 print(f"post-2010 log-linear slope: {slope:.5f} (CAGR {cagr:.2f}%/yr)")
 
+# ── post-2020 log-linear fit (purple line) — AI/COVID era, steeper regime ──
+mask20 = [i for i, d in enumerate(dates) if d.year >= 2020]
+d_20 = [dates[i] for i in mask20]
+p_20 = [prices[i] for i in mask20]
+xs_20 = np.array([d.year + (d.month - 1) / 12 for d in d_20])
+ys_20 = np.log(np.array(p_20))
+slope_20, intercept_20 = np.polyfit(xs_20, ys_20, 1)
+cagr_20 = (math.exp(slope_20) - 1) * 100
+print(f"post-2020 log-linear slope: {slope_20:.5f} (CAGR {cagr_20:.2f}%/yr)")
+
 # ── project forward from last actual point (Apr 2026) to Dec 2030 ──
 last_dt = dates[-1]
 last_x = last_dt.year + (last_dt.month - 1) / 12
 end_x = 2030 + 11/12  # Dec 2030
 future_x = np.arange(last_x, end_x + 1/12, 1/12)
 future_y = np.exp(intercept + slope * future_x)
+future_y_20 = np.exp(intercept_20 + slope_20 * future_x)
 future_dates = []
 y_, m_ = last_dt.year, last_dt.month
 for _ in future_x:
@@ -65,6 +76,9 @@ for _ in future_x:
 
 def at_year(yr):
     return float(np.exp(intercept + slope * yr))
+
+def at_year_20(yr):
+    return float(np.exp(intercept_20 + slope_20 * yr))
 
 print()
 print("  date         projected S&P")
@@ -94,9 +108,26 @@ fig.add_trace(go.Scatter(
 # Dashed red: the same fit extended forward into the projection window
 fig.add_trace(go.Scatter(
     x=future_dates, y=future_y, mode="lines",
-    name="projection · same fit extended",
+    name="projection · post-2010 fit extended",
     line=dict(color="#f87171", width=2.4, dash="dash"),
     hovertemplate="<b>%{x|%b %Y}</b><br>projected: %{y:,.0f}<extra></extra>",
+))
+
+# Solid purple: the post-2020 fit over historical (AI/COVID era)
+fit_20_hist_y = np.exp(intercept_20 + slope_20 * xs_20)
+fig.add_trace(go.Scatter(
+    x=d_20, y=fit_20_hist_y, mode="lines",
+    name=f"fit · post-2020 · CAGR {cagr_20:.2f}%/yr",
+    line=dict(color="#c084fc", width=2.4),  # SOLID purple
+    hovertemplate="<b>%{x|%b %Y}</b><br>fit (post-2020): %{y:,.0f}<extra></extra>",
+))
+
+# Dashed purple: post-2020 fit extended to 2030
+fig.add_trace(go.Scatter(
+    x=future_dates, y=future_y_20, mode="lines",
+    name="projection · post-2020 fit extended",
+    line=dict(color="#c084fc", width=2.4, dash="dash"),
+    hovertemplate="<b>%{x|%b %Y}</b><br>projected (post-2020): %{y:,.0f}<extra></extra>",
 ))
 
 # Mark key milestone: today + 2030
@@ -124,16 +155,18 @@ for target in (7000, 8000, 9000, 10000, 12000, 15000):
 fig.add_annotation(
     xref="paper", yref="paper",
     x=0.02, y=0.98, xanchor="left", yanchor="top",
-    text=(f"<b>Projection from post-2010 log-linear fit</b><br>"
-          f"slope: <b>{slope:.5f}</b> (CAGR <b>{cagr:.2f}%/yr</b>)<br>"
+    text=(f"<b>Two log-linear fits</b><br>"
+          f"<span style='color:#fca5a5'>post-2010: CAGR <b>{cagr:.2f}%/yr</b></span><br>"
+          f"<span style='color:#d8b4fe'>post-2020: CAGR <b>{cagr_20:.2f}%/yr</b></span> "
+          f"<span style='color:#a18050'>(AI/COVID era)</span><br>"
+          f"<br>"
           f"2026-04 actual: <b>7,041</b><br>"
-          f"2027 proj: <b>{at_year(2027):,.0f}</b><br>"
-          f"2028 proj: <b>{at_year(2028):,.0f}</b><br>"
-          f"2029 proj: <b>{at_year(2029):,.0f}</b><br>"
-          f"2030 proj: <b>{at_year(2030.92):,.0f}</b>"),
+          f"<br><b>2030 end projections</b><br>"
+          f"<span style='color:#fca5a5'>post-2010 line: <b>{at_year(2030.92):,.0f}</b></span><br>"
+          f"<span style='color:#d8b4fe'>post-2020 line: <b>{at_year_20(2030.92):,.0f}</b></span>"),
     showarrow=False, align="left",
-    bgcolor="rgba(20,14,6,0.92)", bordercolor="#f87171", borderwidth=1,
-    font=dict(color="#fca5a5", size=12, family="-apple-system"),
+    bgcolor="rgba(20,14,6,0.92)", bordercolor="#c084fc", borderwidth=1,
+    font=dict(color="#e8e2cf", size=12, family="-apple-system"),
 )
 
 fig.update_layout(
@@ -148,7 +181,7 @@ fig.update_layout(
     plot_bgcolor="#000000",
     yaxis=dict(
         type="linear",
-        range=[1000, at_year(2030.92) * 1.08],
+        range=[1000, max(at_year(2030.92), at_year_20(2030.92)) * 1.08],
         title=dict(text="S&P 500 (price)", font=dict(color="#ffb94a")),
         gridcolor="#332a18", zerolinecolor="#332a18",
         tickfont=dict(color="#a18050"),
