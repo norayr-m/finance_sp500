@@ -1,5 +1,15 @@
 # finance_sp500 — super-exponential equity regime study
 
+### Three ways in (hosted on GitHub Pages)
+
+| 📈 [Golden log-log &amp; fit](https://norayr-m.github.io/finance_sp500/html/sp500_loglog.html) | 🎙 [George + Emma interview](https://norayr-m.github.io/finance_sp500/html/interview.html) | 📚 [Emma technical dive](https://norayr-m.github.io/finance_sp500/html/technical_dive.html) |
+| :---: | :---: | :---: |
+| interactive ln(ln(P)) plot · post-2010 regime is 12× more linear than the full 155-year series | 2m 46s podcast · transcript auto-highlights speaker · chart panel swaps as they speak | 13 slides · Emma narrated · Sornette LPPLS literature with inline citations · charts embedded in 4 slides |
+
+Landing: **[norayr-m.github.io/finance_sp500](https://norayr-m.github.io/finance_sp500/)**
+
+---
+
 Personal notebook.
 
 ## The story
