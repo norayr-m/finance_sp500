@@ -6,7 +6,7 @@
 <title>finance_sp500 · super-exponential regime study</title>
 <meta name="description" content="A year ago I predicted S&P 500 would hit 7000 in spring 2026. It landed at 7041 on April 17. Here is the math.">
 <meta property="og:title" content="finance_sp500 · super-exponential regime study">
-<meta property="og:description" content="A year ago I predicted S&P 500 would hit 7000 in spring 2026. It landed at 7041 on April 17. Here is the math.">
+<meta property="og:description" content="Log-log linearity test, two-minima trendline, Sornette LPPLS framework.">
 <style>
   :root {
     --bg: #0b0a08; --panel: #14120e; --gold: #d4af37; --gold-dim: #8a7228;
@@ -15,7 +15,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: var(--bg); color: var(--text);
     font-family: -apple-system, "SF Pro Display", sans-serif; line-height: 1.55; }
-  body { padding: 6vh 6vw; max-width: 1200px; margin: 0 auto; }
+  body { padding: 6vh 6vw; max-width: 1300px; margin: 0 auto; }
   header { border-bottom: 1px solid var(--gold-dim); padding-bottom: 3vh; margin-bottom: 4vh; }
   h1 { color: var(--gold); font-size: 4vh; font-weight: 500; letter-spacing: 2px; margin-bottom: 1.2vh; }
   .sub { color: var(--muted); font-size: 1.8vh; letter-spacing: 1px; }
@@ -25,15 +25,17 @@
   b { color: var(--gold-bright); }
   code { background: #000; color: var(--gold-bright); font-family: "SF Mono", Menlo, monospace;
     font-size: 1.7vh; padding: 2px 6px; border-radius: 3px; }
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2vh; margin: 3vh 0; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2vh; margin: 3vh 0; }
+  @media (max-width: 900px) { .cards { grid-template-columns: 1fr; } }
   .card { background: var(--panel); border: 1px solid var(--gold-dim); border-radius: 10px;
-    padding: 2.5vh 2vw; transition: border-color 0.2s, transform 0.2s; }
+    padding: 3vh 2vw; transition: border-color 0.2s, transform 0.2s; min-height: 24vh;
+    display: flex; flex-direction: column; }
   .card:hover { border-color: var(--gold-bright); transform: translateY(-2px); }
-  .card a { color: inherit; text-decoration: none; display: block; }
-  .card h3 { color: var(--gold-bright); font-size: 2.2vh; margin-bottom: 0.8vh; letter-spacing: 1px; }
-  .card p { font-size: 1.7vh; color: var(--muted); margin: 0; }
-  .card .tag { display: inline-block; margin-top: 1vh; font-size: 1.3vh; color: #4ade80;
+  .card a { color: inherit; text-decoration: none; display: flex; flex-direction: column; height: 100%; }
+  .card .icon { font-size: 4vh; margin-bottom: 1.5vh; opacity: 0.85; }
+  .card h3 { color: var(--gold-bright); font-size: 2.4vh; margin-bottom: 1vh; letter-spacing: 1px; }
+  .card p { font-size: 1.7vh; color: var(--muted); margin: 0; flex: 1; }
+  .card .tag { margin-top: 1.5vh; font-size: 1.3vh; color: #4ade80;
     font-family: "SF Mono", Menlo, monospace; letter-spacing: 1px; }
   .disclaimer { border-left: 3px solid #f87171; padding: 2vh 2vw;
     background: rgba(248, 113, 113, 0.06); color: #fca5a5; margin: 4vh 0;
@@ -51,60 +53,61 @@
   <div class="sub">super-exponential regime study · <span class="pulse">S&amp;P 500 · 7041.28 · 2026-04-17</span></div>
 </header>
 
-<p>A year ago — April 2025 — I sketched an S&amp;P 500 model and pushed it
-to GitHub predicting the index would hit <b>7000 in spring 2026</b>.</p>
+<p>April 2025 — I sketched an S&amp;P 500 model predicting it would hit
+<b>7000 in spring 2026</b>. On <b>April 17, 2026</b> it closed at
+<b>7041.28</b>. The math I derived by eye — the line through two local
+minima on a log chart, then an ln(ln(price)) linearity test — turns out
+to match Didier Sornette's <b>Log-Periodic Power Law Singularity</b>
+framework, published since 1996. I didn't know.</p>
 
-<p>On <b>April 17, 2026</b> it closed at <b>7041.28</b>.</p>
-
-<p>This repo is the cleaned-up analysis behind that call. The framework I
-derived by eye (straight line through two local minima, then an
-ln(ln(price)) linearity test) turns out to match Didier Sornette's
-<b>Log-Periodic Power Law Singularity</b> model, which has been
-publishing this thesis since 1996. I just didn't know.</p>
-
-<h2>Three decks</h2>
+<h2>Three pages</h2>
 
 <div class="cards">
-  <div class="card"><a href="html/slides.html">
-    <h3>▶ Slide deck</h3>
-    <p>10 slides · Emma narration · keyboard navigation · interactive charts embedded.
-    Covers the eye-derived fits, piecewise regimes, and the super-exp test.</p>
-    <span class="tag">PRIMARY · ~6 MIN</span>
+  <div class="card"><a href="html/sp500_loglog.html">
+    <div class="icon">📈</div>
+    <h3>1. Golden log-log &amp; fit</h3>
+    <p>Interactive ln(ln(price)) plot. Post-2010 regime is 12× more
+    linear than the full 155-year series — the super-exponential
+    signature. Zoom, hover, drag the rangeslider.</p>
+    <span class="tag">INTERACTIVE · PLOTLY</span>
   </a></div>
 
   <div class="card"><a href="html/interview.html">
-    <h3>🎙 George + Emma interview</h3>
-    <p>2-minute 46-second podcast-style explanation. Transcript highlights the
-    active line; the chart on the right swaps automatically as they speak.</p>
-    <span class="tag">CONVERSATIONAL · 2M 46S</span>
+    <div class="icon">🎙</div>
+    <h3>2. George + Emma interview</h3>
+    <p>2m 46s podcast. Transcript highlights the active speaker; the
+    chart panel swaps automatically as they cover different points.
+    No slides to click.</p>
+    <span class="tag">AUDIO · AUTO-SYNC · 2M 46S</span>
   </a></div>
 
   <div class="card"><a href="html/technical_dive.html">
-    <h3>📚 Technical dive</h3>
-    <p>12 slides · Emma narrated · full Sornette LPPLS literature with
-    inline citations. The LPPL equation, warning signals, limitations.</p>
-    <span class="tag">FORMAL · CITED · ~8 MIN</span>
+    <div class="icon">📚</div>
+    <h3>3. Emma technical dive</h3>
+    <p>13 slides · Emma narrated · full Sornette LPPLS literature
+    with inline citations. Four slides embed the live interactive
+    charts alongside the text.</p>
+    <span class="tag">CITED · CHARTS EMBEDDED · ~9 MIN</span>
   </a></div>
 </div>
 
-<h2>The charts alone</h2>
-
+<h2>Direct links to the charts</h2>
 <ul style="margin-left: 3vw; font-size: 1.8vh; list-style: none;">
-  <li style="margin: 0.8vh 0">◆ <a class="link" href="html/sp500_shiller_1871_2026.html">Full S&amp;P 500 series 1871-2026</a> — PWLF piecewise fits, forward projection</li>
-  <li style="margin: 0.8vh 0">◆ <a class="link" href="html/sp500_minima_line.html">Two-minima trendline</a> — straight line through Aug 2011 + Mar 2025, 6-segment overlay</li>
-  <li style="margin: 0.8vh 0">◆ <a class="link" href="html/sp500_loglog.html">ln(ln(P)) super-exponential test</a> — post-2010 is 12.7× more linear than the full series</li>
+  <li style="margin: 0.8vh 0">◆ <a class="link" href="html/sp500_shiller_1871_2026.html">Full S&amp;P 500 · 1871-2026 · PWLF regime fit + forward projection</a></li>
+  <li style="margin: 0.8vh 0">◆ <a class="link" href="html/sp500_minima_line.html">Two-minima trendline · Aug 2011 + Mar 2025 · 6-segment overlay</a></li>
+  <li style="margin: 0.8vh 0">◆ <a class="link" href="html/sp500_loglog.html">ln(ln(P)) super-exponential test · golden evidence</a></li>
 </ul>
 
 <h2>The code</h2>
-<p><a class="link" href="https://github.com/norayr-m/finance_sp500">github.com/norayr-m/finance_sp500</a> — full source, scripts, data, notes.</p>
+<p><a class="link" href="https://github.com/norayr-m/finance_sp500">github.com/norayr-m/finance_sp500</a> — full source, scripts, Shiller data, notes.</p>
 
 <div class="disclaimer">
-  <p><b>Humble disclaimer.</b> This is an amateur engineering project. Not a
-  quant finance professional. The 7000 call was a single correct prediction;
+  <p><b>Humble disclaimer.</b> Amateur engineering project. Not a quant
+  finance professional. The 7000 call was a single correct prediction;
   one sample is not a track record. Errors are likely.</p>
   <p style="margin-top: 1vh"><b>Nothing here is investment advice.</b> No
-  recommendation to buy, sell, or hold any security. Past fits do not predict
-  future outcomes. Do your own math.</p>
+  recommendation to buy, sell, or hold any security. Past fits do not
+  predict future outcomes. Do your own math.</p>
 </div>
 
 <footer>

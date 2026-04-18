@@ -188,6 +188,13 @@ SLIDES = [
      "five frontier papers. The links are in this slide. Thank you for watching."),
 ]
 
+SLIDE_CHARTS = {
+    3: "sp500_shiller_1871_2026.html",
+    5: "sp500_minima_line.html",
+    8: "sp500_shiller_1871_2026.html",
+    10: "sp500_loglog.html",
+}
+
 # Render Emma narrations
 print(f"rendering {len(SLIDES)} technical-dive narrations…")
 for i, (title, _cite, narr) in enumerate(SLIDES):
@@ -211,13 +218,21 @@ print("done")
 # Build HTML
 slide_sections = []
 for i, (title, cite, _) in enumerate(SLIDES):
+    chart = SLIDE_CHARTS.get(i)
+    if chart:
+        body = f'''<div class="split">
+    <div class="citation">{cite}</div>
+    <iframe class="chart-embed" src="{chart}" title="{title}"></iframe>
+  </div>'''
+    else:
+        body = cite
     slide_sections.append(f'''
-<section class="slide" data-audio="audio/td_{i:02d}.mp3">
+<section class="slide{" has-chart" if chart else ""}" data-audio="audio/td_{i:02d}.mp3">
   <header>
     <h2>{title}</h2>
-    <div class="meta">slide {i+1} / {len(SLIDES)}</div>
+    <div class="meta">slide {i+1} / {len(SLIDES)}{" · chart" if chart else ""}</div>
   </header>
-  <div class="body">{cite}</div>
+  <div class="body">{body}</div>
 </section>''')
 
 html = f'''<!DOCTYPE html>
