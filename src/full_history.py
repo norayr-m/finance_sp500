@@ -85,7 +85,7 @@ minima_cagr = (10 ** slope_log - 1) * 100
 print(f"two-minima line through {MIN_1[0]:%Y-%m} ({MIN_1[1]}) and "
       f"{MIN_2[0]:%Y-%m} ({MIN_2[1]}): {minima_cagr:.2f}%/yr")
 
-# Build dates covering 1871 → Dec 2030
+# Build dates covering 1871 → Dec 2045
 def month_iter(start_dt, end_dt):
     cur = datetime(start_dt.year, start_dt.month, 1)
     out = []
@@ -97,30 +97,30 @@ def month_iter(start_dt, end_dt):
         cur = datetime(next_y, next_m, 1)
     return out
 
-all_dates_2030 = month_iter(dates[0], datetime(2030, 12, 1))
-all_xs = np.array([(d.year + (d.month-1)/12) - y0 for d in all_dates_2030])
+all_dates_2045 = month_iter(dates[0], datetime(2045, 12, 1))
+all_xs = np.array([(d.year + (d.month-1)/12) - y0 for d in all_dates_2045])
 
 # Green/blue lines only draw from Jan 2009 forward; red uses full range.
 VIS_START = datetime(2009, 1, 1)
 vis_start_x = (VIS_START.year + (VIS_START.month-1)/12) - y0
 
-# Two-minima green line: solid Jan 2009 → today, dashed today → 2030
+# Two-minima green line: solid Jan 2009 → today, dashed today → 2045
 split_x = xs[-1]
 minima_y = 10 ** (intercept_log + slope_log * all_xs)
 solid_mask = (all_xs >= vis_start_x) & (all_xs <= split_x)
 dashed_mask = all_xs >= split_x
 
 fig.add_trace(go.Scatter(
-    x=[d for d, m in zip(all_dates_2030, solid_mask) if m],
+    x=[d for d, m in zip(all_dates_2045, solid_mask) if m],
     y=minima_y[solid_mask], mode="lines",
     name=f"two-minima line · {minima_cagr:.2f}%/yr",
     line=dict(color="#86efac", width=2.4),
     hovertemplate="<b>%{x|%b %Y}</b><br>minima line: %{y:.0f}<extra></extra>",
 ))
 fig.add_trace(go.Scatter(
-    x=[d for d, m in zip(all_dates_2030, dashed_mask) if m],
+    x=[d for d, m in zip(all_dates_2045, dashed_mask) if m],
     y=minima_y[dashed_mask], mode="lines",
-    name="two-minima line → 2030",
+    name="two-minima line → 2045",
     line=dict(color="#86efac", width=2.4, dash="dash"),
     hovertemplate="<b>%{x|%b %Y}</b><br>minima proj: %{y:.0f}<extra></extra>",
     showlegend=False,
@@ -178,7 +178,7 @@ fig.add_trace(go.Scatter(
 ))
 
 # Blue: log-linear OLS from Feb 2009, fit on all data from that point forward.
-# Solid through today, dashed to 2030.
+# Solid through today, dashed to 2045.
 gfc_start = datetime(2009, 2, 1)
 gfc_mask_data = np.array([d >= gfc_start for d in dates])
 gfc_xs = xs[gfc_mask_data]
@@ -191,21 +191,21 @@ gfc_solid_mask = (all_xs >= vis_start_x) & (all_xs <= split_x)
 gfc_dashed_mask = all_xs >= split_x
 
 fig.add_trace(go.Scatter(
-    x=[d for d, m in zip(all_dates_2030, gfc_solid_mask) if m],
+    x=[d for d, m in zip(all_dates_2045, gfc_solid_mask) if m],
     y=gfc_fit_all[gfc_solid_mask], mode="lines",
     name=f"Feb 2009→now L¹ fit · {gfc_cagr:.2f}%/yr",
     line=dict(color="#60a5fa", width=2.2),
     hovertemplate="<b>%{x|%b %Y}</b><br>L¹-fit: %{y:.0f}<extra></extra>",
 ))
 fig.add_trace(go.Scatter(
-    x=[d for d, m in zip(all_dates_2030, gfc_dashed_mask) if m],
+    x=[d for d, m in zip(all_dates_2045, gfc_dashed_mask) if m],
     y=gfc_fit_all[gfc_dashed_mask], mode="lines",
-    name="Feb 2009→now fit → 2030",
+    name="Feb 2009→now fit → 2045",
     line=dict(color="#60a5fa", width=2.2, dash="dash"),
     hovertemplate="<b>%{x|%b %Y}</b><br>L¹-fit proj: %{y:.0f}<extra></extra>",
     showlegend=False,
 ))
-print(f"Feb 2009→now L1 log-linear: {gfc_cagr:.2f}%/yr  →  Dec 2030: {gfc_fit_all[-1]:.0f}")
+print(f"Feb 2009→now L1 log-linear: {gfc_cagr:.2f}%/yr  →  Dec 2045: {gfc_fit_all[-1]:.0f}")
 
 # Mark the actual 2026-04-17 close on the chart for visual reality-check
 fig.add_trace(go.Scatter(
@@ -311,7 +311,7 @@ fig.update_layout(
         title=dict(text="", font=dict(color="#ffb94a")),
         gridcolor="#332a18", zerolinecolor="#332a18",
         tickfont=dict(color="#a18050"),
-        range=[datetime(dates[-1].year - 100, 1, 1), datetime(2031, 1, 1)],
+        range=[datetime(dates[-1].year - 100, 1, 1), datetime(2046, 1, 1)],
         rangeslider=dict(visible=True, bgcolor="#1a1208", thickness=0.06),
         fixedrange=False,
     ),

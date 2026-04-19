@@ -126,7 +126,7 @@ anc2_y = float(np.log(np.log(ANC_2[1])))
 
 # Line extends from far-left to far-right through both anchors
 LINE_X_MIN = datetime(1871, 1, 1)
-LINE_X_MAX = datetime(2040, 1, 1)
+LINE_X_MAX = datetime(2045, 1, 1)
 
 def _line_endpoints(a1d, a1y, a2d, a2y):
     t1 = a1d.year + (a1d.month - 1) / 12
@@ -292,7 +292,7 @@ fig.update_layout(
         gridcolor="#332a18", zerolinecolor="#332a18",
         tickfont=dict(color="#a18050"),
         fixedrange=False,
-        range=[datetime(2000, 1, 1), datetime(2030, 12, 1)],
+        range=[datetime(2000, 1, 1), datetime(2045, 12, 1)],
     ),
     yaxis_range=[1.6, 2.25],
     hoverlabel=dict(bgcolor="#1a1208", font=dict(color="#ffd76a", family="SF Mono, Menlo")),
@@ -405,7 +405,7 @@ page = f"""<!DOCTYPE html>
   function pxToDataY(ya, py) {{ return ya.p2d(py - ya._offset); }}
 
   const LINE_TMIN = new Date("1871-01-01").getTime();
-  const LINE_TMAX = new Date("2040-01-01").getTime();
+  const LINE_TMAX = new Date("2045-01-01").getTime();
   const YEAR_MS = 365.25 * 24 * 3600 * 1000;
 
   function extendedLinePoints(mx, my) {{
