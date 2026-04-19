@@ -1,32 +1,29 @@
 # finance_sp500
 
-**Status:** dormant. Last update 2026-04-19. Next review ≥ 2027.
-
-One interactive chart of the S&P 500 from 1871 to 2026, and one recorded
-prediction.
+two interactive charts of the S&P 500 from 1871 to 2026, plus one recorded
+eyeball prediction.
 
 - **[📈 S&P 500 · 1871 → 2026](https://norayr-m.github.io/finance_sp500/html/sp500_shiller_1871_2026.html)**
-  Shiller monthly composite, log scale, long-run OLS trend, major events,
-  2026-04-17 close.
+  Shiller monthly composite. Log / linear y toggle. Green two-minima eyeball line,
+  blue L¹ fit from Feb 2009, red 3-segment continuous-PWLF. Events marked.
 
-## The prediction
+- **[🔍 log-log transform](https://norayr-m.github.io/finance_sp500/html/sp500_loglog.html)**
+  y = ln(ln(price)). Draggable anchor circles with live slope/CAGR readout.
+  Local extrema overlay. RANSAC best-pair line (band scaled to ±1% in price).
 
-In **April 2025** I drew a straight line by eye on the post-2010 leg of
-the S&P 500 and wrote down that the index would reach **7000 in
-spring/summer 2026**. On **2026-04-17** the S&P 500 closed at **7041.28**.
+## the one recorded call
 
-One sample. Not a track record.
+April 2025 — straight line drawn by eye on the post-2010 leg said S&P 500
+would reach 7000 in spring/summer 2026. On 2026-04-17 it closed at 7041.
 
-## Non-advice
+one sample. not a track record.
 
-This is not investment advice. No recommendation to buy, sell, or hold
-any security. Past fits do not predict future outcomes.
+## non-advice
 
-## Humble disclaimer
+not investment advice. no recommendation to buy, sell, or hold any security.
+past fits do not predict future outcomes.
 
-Amateur project. Not a quant. No competitive claims. One correct call is
-not a track record. Errors likely. Numbers speak, ego doesn't.
+## humble disclaimer
 
----
-
-**Last update:** 2026-04-19 · dormant.
+amateur project. not a quant. no competitive claims. one correct call is
+not a track record. errors likely. numbers speak, ego doesn't.
