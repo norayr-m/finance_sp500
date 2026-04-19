@@ -57,11 +57,25 @@ draw_mask = np.array([d.year >= 2005 for d in dates])
 draw_dates = [d for d, m in zip(dates, draw_mask) if m]
 r_line_draw = r_line[draw_mask]
 
-# LIN-mode fits: OLS on ln(P) vs t, rendered as exp back to prices
+# LIN-mode fits: OLS on ln(P) vs t, rendered as exp back to prices.
+# Extend through Dec 2045 so LIN view carries the projection too.
 slope_lin, intercept_lin = np.polyfit(xs, log_p, 1)
-lin_fit_full = np.exp(intercept_lin + slope_lin * xs)
 rslope_lin, rintercept_lin = np.polyfit(xs[mask_recent], log_p[mask_recent], 1)
-lin_fit_recent = np.exp(rintercept_lin + rslope_lin * xs[draw_mask])
+
+ext_dates = []
+_cur = dates[0]
+while _cur <= datetime(2045, 12, 1):
+    ext_dates.append(_cur)
+    _nm = _cur.month + 1
+    _ny = _cur.year + (1 if _nm > 12 else 0)
+    _nm = 1 if _nm > 12 else _nm
+    _cur = datetime(_ny, _nm, 1)
+ext_xs = np.array([d.year + (d.month-1)/12 for d in ext_dates])
+lin_fit_full = np.exp(intercept_lin + slope_lin * ext_xs)
+
+ext_draw_mask = np.array([d.year >= 2005 for d in ext_dates])
+ext_draw_dates = [d for d, m in zip(ext_dates, ext_draw_mask) if m]
+lin_fit_recent = np.exp(rintercept_lin + rslope_lin * ext_xs[ext_draw_mask])
 
 print(f"full-series slope on ln(ln P) vs time: {slope:.5f}/yr")
 print(f"post-2010 slope on ln(ln P) vs time:   {rslope:.5f}/yr")
@@ -104,15 +118,15 @@ fig.add_trace(go.Scatter(
     visible=False,
 ))
 fig.add_trace(go.Scatter(
-    x=dates, y=lin_fit_full, mode="lines",
-    name="full-series exp fit",
+    x=ext_dates, y=lin_fit_full, mode="lines",
+    name="full-series exp fit → 2045",
     line=dict(color="#f87171", width=1.6, dash="dash"),
     hovertemplate="<b>%{x|%b %Y}</b><br>exp fit: %{y:.2f}<extra></extra>",
     visible=False,
 ))
 fig.add_trace(go.Scatter(
-    x=draw_dates, y=lin_fit_recent, mode="lines",
-    name="post-2010 exp fit",
+    x=ext_draw_dates, y=lin_fit_recent, mode="lines",
+    name="post-2010 exp fit → 2045",
     line=dict(color="#4ade80", width=2.0, dash="dot"),
     hovertemplate="<b>%{x|%b %Y}</b><br>exp fit: %{y:.2f}<extra></extra>",
     visible=False,
