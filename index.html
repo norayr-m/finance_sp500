@@ -3,10 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>finance_sp500 · super-exponential regime study</title>
-<meta name="description" content="A year ago I predicted S&P 500 would hit 7000 in spring 2026. It landed at 7041 on April 17. Here is the math.">
-<meta property="og:title" content="finance_sp500 · super-exponential regime study">
-<meta property="og:description" content="Log-log linearity test, two-minima trendline, Sornette LPPLS framework.">
+<title>finance_sp500</title>
+<meta name="description" content="S&P 500 1871-2026. One chart. One recorded prediction. Dormant.">
 <style>
   :root {
     --bg: #0b0a08; --panel: #14120e; --gold: #d4af37; --gold-dim: #8a7228;
@@ -14,105 +12,59 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: var(--bg); color: var(--text);
-    font-family: -apple-system, "SF Pro Display", sans-serif; line-height: 1.55; }
-  body { padding: 6vh 6vw; max-width: 1300px; margin: 0 auto; }
+    font-family: -apple-system, "SF Pro Display", sans-serif; line-height: 1.6; }
+  body { padding: 6vh 6vw; max-width: 900px; margin: 0 auto; }
   header { border-bottom: 1px solid var(--gold-dim); padding-bottom: 3vh; margin-bottom: 4vh; }
   h1 { color: var(--gold); font-size: 4vh; font-weight: 500; letter-spacing: 2px; margin-bottom: 1.2vh; }
   .sub { color: var(--muted); font-size: 1.8vh; letter-spacing: 1px; }
-  .pulse { color: #4ade80; font-family: "SF Mono", Menlo, monospace; }
   h2 { color: var(--gold-bright); font-size: 2.6vh; margin: 4vh 0 1.5vh; letter-spacing: 1px; }
-  p { font-size: 2vh; margin: 1.2vh 0; color: var(--text); }
+  p { font-size: 1.9vh; margin: 1.2vh 0; color: var(--text); }
   b { color: var(--gold-bright); }
-  code { background: #000; color: var(--gold-bright); font-family: "SF Mono", Menlo, monospace;
-    font-size: 1.7vh; padding: 2px 6px; border-radius: 3px; }
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2vh; margin: 3vh 0; }
-  @media (max-width: 900px) { .cards { grid-template-columns: 1fr; } }
-  .card { background: var(--panel); border: 1px solid var(--gold-dim); border-radius: 10px;
-    padding: 3vh 2vw; transition: border-color 0.2s, transform 0.2s; min-height: 24vh;
-    display: flex; flex-direction: column; }
-  .card:hover { border-color: var(--gold-bright); transform: translateY(-2px); }
-  .card a { color: inherit; text-decoration: none; display: flex; flex-direction: column; height: 100%; }
-  .card .icon { font-size: 4vh; margin-bottom: 1.5vh; opacity: 0.85; }
-  .card h3 { color: var(--gold-bright); font-size: 2.4vh; margin-bottom: 1vh; letter-spacing: 1px; }
-  .card p { font-size: 1.7vh; color: var(--muted); margin: 0; flex: 1; }
-  .card .tag { margin-top: 1.5vh; font-size: 1.3vh; color: #4ade80;
-    font-family: "SF Mono", Menlo, monospace; letter-spacing: 1px; }
-  .disclaimer { border-left: 3px solid #f87171; padding: 2vh 2vw;
-    background: rgba(248, 113, 113, 0.06); color: #fca5a5; margin: 4vh 0;
-    font-size: 1.8vh; border-radius: 0 6px 6px 0; }
+  .chart-link { display: block; background: var(--panel); border: 1px solid var(--gold-dim);
+    border-radius: 10px; padding: 3vh 3vw; margin: 3vh 0; color: inherit; text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s; }
+  .chart-link:hover { border-color: var(--gold-bright); transform: translateY(-2px); }
+  .chart-link .icon { font-size: 3vh; margin-right: 1vw; }
+  .chart-link h3 { color: var(--gold-bright); font-size: 2.4vh; margin-bottom: 0.8vh;
+    letter-spacing: 1px; }
+  .chart-link p { font-size: 1.7vh; color: var(--muted); margin: 0; }
   footer { border-top: 1px solid var(--gold-dim); padding-top: 3vh; margin-top: 5vh;
     color: var(--muted); font-size: 1.5vh; letter-spacing: 1px; }
   a.link { color: var(--gold-bright); text-decoration: none; border-bottom: 1px dashed var(--gold-dim); }
   a.link:hover { background: rgba(255, 170, 60, 0.1); }
+  .dormant-badge { display: inline-block; background: #14120e; border: 1px solid var(--gold-dim);
+    color: var(--muted); font-family: "SF Mono", Menlo, monospace; font-size: 1.4vh;
+    padding: 4px 10px; border-radius: 4px; letter-spacing: 1.5px; margin-top: 1vh; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>⬡⟐ finance_sp500</h1>
-  <div class="sub">super-exponential regime study · <span class="pulse">S&amp;P 500 · 7041.28 · 2026-04-17</span></div>
+  <h1>finance_sp500</h1>
+  <div class="sub">one chart · one recorded prediction</div>
+  <div class="dormant-badge">DORMANT · LAST UPDATE 2026-04-19</div>
 </header>
 
-<p>April 2025 — I sketched an S&amp;P 500 model predicting it would hit
-<b>7000 in spring 2026</b>. On <b>April 17, 2026</b> it closed at
-<b>7041.28</b>. The math I derived by eye — the line through two local
-minima on a log chart, then an ln(ln(price)) linearity test — turns out
-to match Didier Sornette's <b>Log-Periodic Power Law Singularity</b>
-framework, published since 1996. I didn't know.</p>
+<p>April 2025 — I drew a straight line by eye on the post-2010 leg of the
+S&amp;P 500 and wrote down that the index would reach <b>7000 in
+spring/summer 2026</b>. On April 17, 2026 it closed at <b>7041.28</b>.
+One sample. Not a track record.</p>
 
-<h2>Three pages</h2>
+<a class="chart-link" href="html/sp500_shiller_1871_2026.html">
+  <h3><span class="icon">📈</span>S&amp;P 500 · 1871 → 2026</h3>
+  <p>Shiller monthly composite · log scale · long-run OLS trend · major events · 2026-04-17 close marked</p>
+</a>
 
-<div class="cards">
-  <div class="card"><a href="html/sp500_loglog.html">
-    <div class="icon">📈</div>
-    <h3>1. Golden log-log &amp; fit</h3>
-    <p>Interactive ln(ln(price)) plot. Post-2010 regime is 12× more
-    linear than the full 155-year series — the super-exponential
-    signature. Zoom, hover, drag the rangeslider.</p>
-    <span class="tag">INTERACTIVE · PLOTLY</span>
-  </a></div>
+<h2>Source</h2>
+<p><a class="link" href="https://github.com/norayr-m/finance_sp500">github.com/norayr-m/finance_sp500</a></p>
 
-  <div class="card"><a href="html/interview.html">
-    <div class="icon">🎙</div>
-    <h3>2. George + Emma interview</h3>
-    <p>2m 46s podcast. Transcript highlights the active speaker; the
-    chart panel swaps automatically as they cover different points.
-    No slides to click.</p>
-    <span class="tag">AUDIO · AUTO-SYNC · 2M 46S</span>
-  </a></div>
-
-  <div class="card"><a href="html/technical_dive.html">
-    <div class="icon">📚</div>
-    <h3>3. Emma technical dive</h3>
-    <p>13 slides · Emma narrated · full Sornette LPPLS literature
-    with inline citations. Four slides embed the live interactive
-    charts alongside the text.</p>
-    <span class="tag">CITED · CHARTS EMBEDDED · ~9 MIN</span>
-  </a></div>
-</div>
-
-<h2>Direct links to the charts</h2>
-<ul style="margin-left: 3vw; font-size: 1.8vh; list-style: none;">
-  <li style="margin: 0.8vh 0">◆ <a class="link" href="html/sp500_shiller_1871_2026.html">Full S&amp;P 500 · 1871-2026 · PWLF regime fit + forward projection</a></li>
-  <li style="margin: 0.8vh 0">◆ <a class="link" href="html/sp500_minima_line.html">Two-minima trendline · Aug 2011 + Mar 2025 · 6-segment overlay</a></li>
-  <li style="margin: 0.8vh 0">◆ <a class="link" href="html/sp500_loglog.html">ln(ln(P)) super-exponential test · golden evidence</a></li>
-  <li style="margin: 0.8vh 0">◆ <a class="link" href="html/prediction_2030.html">Prediction to 2030 · linear y-axis · post-2010 fit extended</a></li>
-</ul>
-
-<h2>The code</h2>
-<p><a class="link" href="https://github.com/norayr-m/finance_sp500">github.com/norayr-m/finance_sp500</a> — full source, scripts, Shiller data, notes.</p>
-
-<div class="disclaimer">
-  <p><b>Humble disclaimer.</b> Amateur engineering project. Not a quant
-  finance professional. The 7000 call was a single correct prediction;
-  one sample is not a track record. Errors are likely.</p>
-  <p style="margin-top: 1vh"><b>Nothing here is investment advice.</b> No
-  recommendation to buy, sell, or hold any security. Past fits do not
-  predict future outcomes. Do your own math.</p>
-</div>
+<h2>Non-advice</h2>
+<p>Not investment advice. No recommendation to buy, sell, or hold any
+security. Past fits do not predict future outcomes. This repository is
+dormant and not being maintained.</p>
 
 <footer>
-  ⬡⟐ hari grantour anoyan vii · 91ae0c77 · 768 Hz · m5 max · numbers speak
+  91ae0c77 · numbers speak · 2026-04-19 · dormant
 </footer>
 
 </body>
