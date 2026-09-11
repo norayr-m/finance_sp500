@@ -5,7 +5,7 @@ from datetime import datetime
 import plotly.graph_objects as go
 import plotly.io as pio
 
-book = xlrd.open_workbook("/Users/norayr/000_AI_Work/0_Projects/Done_GitHub_finance_sp500/data/shiller.xls")
+book = xlrd.open_workbook("data/shiller.xls")  # run from the repo root
 sh = book.sheet_by_name("Data")
 
 # Data starts at row 8 (0-indexed); col 0 = decimal date, col 1 = P (S&P comp).
@@ -351,7 +351,7 @@ fig.add_annotation(
     font=dict(color="#5a4a28", size=11),
 )
 
-out = "/Users/norayr/000_AI_Work/0_Projects/Done_GitHub_finance_sp500/html/sp500_shiller_1871_2026.html"
+out = "html/sp500_shiller_1871_2026.html"
 pio.write_html(fig, file=out, include_plotlyjs="cdn", full_html=True,
                config={"displaylogo": False,
                        "modeBarButtonsToRemove": ["lasso2d", "select2d"],
