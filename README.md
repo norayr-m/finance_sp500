@@ -27,3 +27,7 @@ past fits do not predict future outcomes.
 
 amateur project. not a quant. no competitive claims. one correct call is
 not a track record. errors likely. numbers speak, ego doesn't.
+
+## License
+
+Apache 2.0. See `LICENSE` and `NOTICE`. Shiller's dataset is redistributed unmodified for reproducibility.
